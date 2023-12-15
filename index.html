@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Не кажу — не вмію, а кажу — навчусь!</h1>
+    <script>
+      function getUserInformation() {
+        const birthYear = prompt("Введіть ваш рік народження:");
+        if (birthYear === null) {
+          alert("Шкода, що Ви не захотіли ввести свій рік народження.");
+          return null;
+        }
+
+        const city = prompt("В якому місті ви живете?");
+        if (city === null) {
+          alert("Шкода, що Ви не захотіли ввести своє місто.");
+          return null;
+        }
+
+        const sport = prompt("Ваш улюблений вид спорту:");
+        if (sport === null) {
+          alert("Шкода, що Ви не захотіли ввести свій улюблений вид спорту.");
+          return null;
+        }
+
+        return { birthYear, city, sport };
+      }
+
+      function calculateAge(birthYear) {
+        const currentYear = new Date().getFullYear();
+        return currentYear - birthYear;
+      }
+
+      function displayInformation() {
+        const userInfo = getUserInformation();
+        if (!userInfo) {
+          return;
+        }
+
+        const { birthYear, city, sport } = userInfo;
+        const age = calculateAge(birthYear);
+
+        const capitals = {
+          Київ: "Україні",
+          Вашингтон: "США",
+          Лондон: "Великобританії",
+        };
+
+        let cityMessage =
+          city in capitals
+            ? `Ти живеш у столиці ${capitals[city]}.`
+            : `Ти живеш у місті ${city}.`;
+
+        const sportsChampions = {
+          футбол: "Андрієм Шевченко",
+          бокс: "Олександром Усиком",
+          баскетбол: "Кирилом Фесенко",
+        };
+
+        let sportMessage =
+          sport.toLowerCase() in sportsChampions
+            ? `Круто! Хочеш стати ${sportsChampions[sport.toLowerCase()]}?`
+            : "";
+
+        alert(`Твій вік: ${age} років. ${cityMessage} ${sportMessage}`);
+      }
+
+      displayInformation();
+    </script>
+  </body>
+</html>
